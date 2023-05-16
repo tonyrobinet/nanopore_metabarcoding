@@ -84,8 +84,8 @@ taxa_names(illu_bact_raref_2reads_gen) <- genus_illu
 taxa_names(nano_bact_raref_2reads_gen) <- genus_nano
 genus_illu %>% length() ## 448
 genus_nano %>% length() ## 785
-setdiff(genus_illu,genus_nano) # 55 genus detected by illu only
-setdiff(genus_nano,genus_illu) # 392 genus detected by nano only
+setdiff(genus_illu,genus_nano) %>% length() # 55 genus detected by illu only
+setdiff(genus_nano,genus_illu) %>% length() # 392 genus detected by nano only
 (448-55)/448
 (448-393) + 785
 
@@ -98,8 +98,6 @@ setdiff(genus_nano,genus_illu) # 392 genus detected by nano only
        (illu_bact_raref_2reads_gen %>% taxa_names() %>% length())) # 82.4% genus assigned
 1 - (subset_taxa(illu_bact_raref_2reads_gen,Genus=="__") %>% sample_sums() %>% sum())/
   (illu_bact_raref_2reads_gen %>% sample_sums() %>% sum()) # 94.0% reads assigned
-1 - (subset_taxa(all_bact_raref_2reads_gen,Genus=="__") %>% sample_sums() %>% sum())/
-  (all_bact_raref_2reads_gen %>% sample_sums() %>% sum()) # 76.7% reads assigned among shared genus
 
 ## shared / unshared genus
 illu_bact_raref_2reads_gen_sh <- tax_select(illu_bact_raref_2reads_gen, intersect(genus_illu,genus_nano))
@@ -202,10 +200,10 @@ setdiff(orders_nano,orders_illu) %>% length() # 122 orders detected by nano only
   (illu_bact_raref_2reads_ord %>% sample_sums() %>% sum()) # 98.3% reads assigned
 
 ## shared / unshared orders
-illu_bact_raref_2reads_ord_sh <- tax_select(illu_bact_raref_2reads_ord, intersect(orders_illu,orders_nano))
-nano_bact_raref_2reads_ord_sh <- tax_select(nano_bact_raref_2reads_ord, intersect(orders_nano,orders_illu))
-illu_bact_raref_2reads_ord_unsh <- tax_select(illu_bact_raref_2reads_ord, setdiff(orders_illu,orders_nano))
-nano_bact_raref_2reads_ord_unsh <- tax_select(nano_bact_raref_2reads_ord, setdiff(orders_nano,orders_illu))
+illu_bact_raref_2reads_ord_sh <- tax_select(illu_bact_raref_2reads_ord, intersect(orders_illu,orders_nano), ranks_searched="Class", n_typos = 0)
+nano_bact_raref_2reads_ord_sh <- tax_select(nano_bact_raref_2reads_ord, intersect(orders_nano,orders_illu), ranks_searched="Class", n_typos = 0)
+illu_bact_raref_2reads_ord_unsh <- tax_select(illu_bact_raref_2reads_ord, setdiff(orders_illu,orders_nano), ranks_searched="Class", n_typos = 0)
+nano_bact_raref_2reads_ord_unsh <- tax_select(nano_bact_raref_2reads_ord, setdiff(orders_nano,orders_illu), ranks_searched="Class", n_typos = 0)
 1 - ((subset_taxa(illu_bact_raref_2reads_ord_sh,Order=="__") %>% taxa_names() %>% length())/
        (illu_bact_raref_2reads_ord_sh %>% taxa_names() %>% length())) # Among the 194 shared Orders, 178 (91.8%) were assigned by Illumina, 
 1 - ((subset_taxa(nano_bact_raref_2reads_ord_sh,Order=="__") %>% taxa_names() %>% length())/
@@ -229,8 +227,8 @@ nano_bact_raref_2reads_ord_unsh %>% taxa_names() %>% length() # 122 Orders unsha
 
 
 #### CLASSES
-illu_bact_raref_2reads_class <- tax_glom(illu_bact_raref_2reads, taxrank = "Class")
-nano_bact_raref_2reads_class <- tax_glom(nano_bact_raref_2reads, taxrank = "Class")
+illu_bact_raref_2reads_class <- tax_glom(illu_bact_raref_2reads, taxrank = "Class", NArm=FALSE)
+nano_bact_raref_2reads_class <- tax_glom(nano_bact_raref_2reads, taxrank = "Class", NArm=FALSE)
 class_illu <- paste(illu_bact_raref_2reads_class@tax_table[,2],illu_bact_raref_2reads_class@tax_table[,3])
 class_nano <- paste(nano_bact_raref_2reads_class@tax_table[,2],nano_bact_raref_2reads_class@tax_table[,3])
 class_illu %>% length() ## 106
@@ -251,10 +249,10 @@ setdiff(class_nano,class_illu) %>% length() # 41 classes detected by nano only
   (illu_bact_raref_2reads_class %>% sample_sums() %>% sum()) # 99.6% reads assigned
 
 ## shared / unshared classes
-illu_bact_raref_2reads_class_sh <- tax_select(illu_bact_raref_2reads_class, intersect(class_illu,class_nano), ranks_searched="Class", n_typos = 0)
-nano_bact_raref_2reads_class_sh <- tax_select(nano_bact_raref_2reads_class, intersect(class_illu,class_nano), ranks_searched="Class", n_typos = 0)
-illu_bact_raref_2reads_class_unsh <- tax_select(illu_bact_raref_2reads_class, setdiff(class_illu,class_nano), ranks_searched="Class", n_typos = 0)
-nano_bact_raref_2reads_class_unsh <- tax_select(nano_bact_raref_2reads_class, setdiff(class_nano,class_illu), ranks_searched="Class", n_typos = 0)
+illu_bact_raref_2reads_class_sh <- tax_select(illu_bact_raref_2reads_class, intersect(class_illu,class_nano), ranks_searched="Class", n_typos = 0, strict_matches=TRUE)
+nano_bact_raref_2reads_class_sh <- tax_select(nano_bact_raref_2reads_class, intersect(class_illu,class_nano), ranks_searched="Class", n_typos = 0, strict_matches=TRUE)
+illu_bact_raref_2reads_class_unsh <- tax_select(illu_bact_raref_2reads_class, setdiff(class_illu,class_nano), ranks_searched="Class", n_typos = 0, strict_matches=TRUE)
+nano_bact_raref_2reads_class_unsh <- tax_select(nano_bact_raref_2reads_class, setdiff(class_nano,class_illu), ranks_searched="Class", n_typos = 0, strict_matches=TRUE)
 1 - ((subset_taxa(illu_bact_raref_2reads_class_sh,Class=="__") %>% taxa_names() %>% length())/
        (illu_bact_raref_2reads_class_sh %>% taxa_names() %>% length())) # Among the 99 shared class, 91 (91.9%) were assigned by Illumina, 
 1 - ((subset_taxa(nano_bact_raref_2reads_class_sh,Class=="__") %>% taxa_names() %>% length())/
@@ -274,6 +272,13 @@ nano_bact_raref_2reads_class_unsh %>% taxa_names() %>% length() # 41 class unsha
 1 - ((subset_taxa(nano_bact_raref_2reads_class_sh,Class=="__")) %>% sample_sums() %>% sum() /
        (nano_bact_raref_2reads_class_sh %>% sample_sums() %>% sum())) # 86.1% of Nanopore reads assigned for shared class
 
+nano_bact_raref_2reads_class
+nano_bact_raref_2reads_class %>% sample_sums() %>% sum()
+((nano_bact_raref_2reads_class_unsh %>% sample_sums() %>% sum()) + (nano_bact_raref_2reads_class_sh %>% sample_sums() %>% sum()))/(nano_bact_raref_2reads_class %>% sample_sums() %>% sum())
+(nano_bact_raref_2reads_ord_unsh %>% sample_sums() %>% sum()) + (nano_bact_raref_2reads_ord_sh %>% sample_sums() %>% sum())
+
+subset_taxa(nano_bact_raref_2reads_class_unsh,Class=="__") %>% taxa_names()
+subset_taxa(nano_bact_raref_2reads_ord_unsh, Order=="__") %>% taxa_names() %>% substr(., 1, nchar(.)-3)
 
 
 #### PHYLA
@@ -299,7 +304,6 @@ setdiff(phyla_nano,phyla_illu) %>% length() # 11 phyla detected by nano only Ace
 1 - (subset_taxa(illu_bact_raref_2reads_phy,Phylum=="__") %>% sample_sums() %>% sum())/
   (illu_bact_raref_2reads_phy %>% sample_sums() %>% sum()) # 99.6% reads assigned
 
-?tax_select
 ## shared / unshared phyla
 illu_bact_raref_2reads_phy_sh <- tax_select(illu_bact_raref_2reads_phy, intersect(phyla_illu,phyla_nano), ranks_searched="Phylum", n_typos = 0)
 nano_bact_raref_2reads_phy_sh <- tax_select(nano_bact_raref_2reads_phy, intersect(phyla_illu,phyla_nano), ranks_searched="Phylum", n_typos = 0)
@@ -453,3 +457,30 @@ ggplot(stats, aes(x=Rank, y=detected_by_the_seq_only)) + geom_bar(aes(fill=facto
 ggplot(stats, aes(x=Rank, y=percent_of_taxa_shared_with_the_other_seq, color=factor(seq), group=factor(seq))) + geom_line() + 
   geom_point() + scale_x_discrete(limits = positions) + ylim(0,100)
 dev.off()
+
+
+
+#######################################################@
+## Venn diagrams
+## install.packages("VennDiagram")
+library("VennDiagram")
+
+
+venn_phy <- draw.pairwise.venn(area1 = 45, area2 = 54, cross.area = 43, category=c("Illumina","Nanopore"), scaled=TRUE, 
+                               cex=2, col=c('yellow', 'turquoise'), fill=c('orange', 'turquoise'))
+venn_class <- draw.pairwise.venn(area1 = 106, area2 = 140, cross.area = 99, category=c("Illumina","Nanopore"), scaled=TRUE, 
+                                 cex=2, col=c('yellow', 'turquoise'), fill=c('orange', 'turquoise'))
+venn_ord <- draw.pairwise.venn(area1 = 209, area2 = 316, cross.area = 194, category=c("Illumina","Nanopore"), scaled=TRUE, 
+                               cex=2, col=c('yellow', 'turquoise'), fill=c('orange', 'turquoise'))
+venn_fam <- draw.pairwise.venn(area1 = 309, area2 = 483, cross.area = 285, category=c("Illumina","Nanopore"), scaled=TRUE, 
+                               cex=2, col=c('yellow', 'turquoise'), fill=c('orange', 'turquoise'))
+venn_gen <- draw.pairwise.venn(area1 = 448, area2 = 785, cross.area = 393, category=c("Illumina","Nanopore"), scaled=TRUE, 
+                               cex=2, col=c('yellow', 'turquoise'), fill=c('orange', 'turquoise'))
+venn_esp <- draw.pairwise.venn(area1 = 749, area2 = 1495, cross.area = 522, category=c("Illumina","Nanopore"), scaled=TRUE, 
+                               cex=2, col=c('yellow', 'turquoise'), fill=c('orange', 'turquoise'))
+
+pdf("/Users/tonyrobinet/sync/mangroves/M2_Alice/draft/figures/venn_diagrams_phylogenet.pdf", width = 12, height = 2)
+##grid.newpage()
+grid.arrange(venn_phy, venn_class, venn_ord, venn_fam, venn_gen, venn_esp, nrow=1)
+dev.off()
+

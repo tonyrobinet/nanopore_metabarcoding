@@ -60,7 +60,7 @@ illu_arc <- prune_samples(sample_sums(illu_arc)!=0,illu_arc)
 illu_arc %>% sample_sums %>% max # min 29 reads, mean 193 reads, max 620 reads
 
 illu_bact <- subset_taxa(mangrove_16Sv4_tag, Kingdom=="Bacteria")
-
+768+31
 
 
 ## nano with sample tag
@@ -126,7 +126,7 @@ nano_all <- merge_phyloseq(mangrove_16SONT_tag, mangrove_arc_ONT_tag)
 
 nano_arc <- subset_taxa(nano_all, Kingdom=="Archaea")
 nano_bact <- subset_taxa(nano_all, Kingdom=="Bacteria")
-
+3822+284
 
 
 ################################################################
@@ -155,14 +155,19 @@ all_raref_2reads <- merge_phyloseq(illu_all_raref_2reads, nano_all_raref_2reads)
 
 
 ## Bacteria only
+illu_bact <- subset_taxa(illu_bact, Kingdom=="Bacteria")
 illu_bact_raref <- phyloseq_coverage_raref(illu_bact, correct_singletons = FALSE) # Coverage value was set to the minimum observed value across bact samples (0.9995913)
 illu_bact_raref_2reads <- microbiome::core(illu_bact_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-illu_bact_raref_2reads %>% sample_sums %>% mean # mean 2609 reads, min 1338, max 4991, 749 OTUs
+illu_bact_raref_2reads %>% sample_sums %>% max # mean 2609 reads, min 1338, max 4991, 768 OTUs
 
 nano_bact_raref <- phyloseq_coverage_raref(nano_bact, correct_singletons = FALSE) # Coverage value was set to the minimum observed value across bact samples (0.9411947)
 nano_bact_raref_2reads <- microbiome::core(nano_bact_raref, detection=1, prevalence=0) # remove singletons after rarefaction
 nano_bact_raref_2reads %>% sample_sums %>% mean # mean 5108 reads, min 4451, max 6019, 1495 OTUs
 bact_raref_2reads <- merge_phyloseq(illu_bact_raref_2reads, nano_bact_raref_2reads)
+
+nano_arc_raref <- phyloseq_coverage_raref(nano_arc, correct_singletons = FALSE) # Coverage value was set to the minimum observed value across arc samples (0.9411947)
+nano_arc_raref_2reads <- microbiome::core(nano_arc_raref, detection=1, prevalence=0) # remove singletons after rarefaction
+nano_arc_raref_2reads %>% sample_sums %>% max # mean 4817 reads, min 2384, max 6701, 171 OTUs
 
 
 ## Proteobacteria (most diversified and abundant phylum)
@@ -207,9 +212,9 @@ shared_fam$Var1 %>% length ## 234 of the 408 families are shared (57.3%), 174 fa
 ########################################## CLASSICAL RAREFACTION
 ## same number of reads per sample for Illumina and Nanopore
 set.seed(1234)
-illu_all_classic_raref <- rarefy_even_depth(mangrove_16Sv4_tag, rngseed = T) # Coverage value was set to the minimum observed value across all samples (0.9996036)
+illu_all_classic_raref <- rarefy_even_depth(illu_bact, rngseed = T) # Coverage value was set to the minimum observed value across all samples (0.9996036)
 illu_all_classic_raref_2reads <- microbiome::core(illu_all_classic_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-illu_all_classic_raref_2reads %>% sample_sums %>% max # 1955 reads, 643 OTUs
+illu_all_classic_raref_2reads %>% sample_sums %>% max # 1582 reads, 587 OTUs
 ##write.csv(illu_all_classic_raref_2reads@tax_table,"~/sync/mangroves/M2_Alice/resultats/silva_primers_ONT_Illumina/illu_all_classic_raref_no_singleton.csv")
 
 nano_all_classic_raref <- rarefy_even_depth(nano_all, sample.size =(illu_all_classic_raref %>% sample_sums %>% min),  rngseed = T) # Coverage value was set to the minimum observed value across all samples (0.9996036)
@@ -217,14 +222,14 @@ nano_all_classic_raref_2reads <- microbiome::core(nano_all_classic_raref, detect
 nano_all_classic_raref_2reads %>% sample_sums %>% max # 1950 reads, 831 OTUs
 ##write.csv(nano_all_classic_raref_2reads@tax_table,"~/sync/mangroves/M2_Alice/resultats/silva_primers_ONT_illumina/nano_all_classic_raref_no_singleton.csv")
 
-
-illu_bact_classic_raref <- rarefy_even_depth(mangrove_16Sv4_tag, rngseed = T) # Coverage value was set to the minimum observed value across bact samples (0.9996036)
+illu_bact <- subset_taxa(illu_bact_classic_raref, Kingdom=="Bacteria")
+illu_bact_classic_raref <- rarefy_even_depth(illu_bact, rngseed = T) # Coverage value was set to the minimum observed value across bact samples (0.9996036)
 illu_bact_classic_raref_2reads <- microbiome::core(illu_bact_classic_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-illu_bact_classic_raref_2reads %>% sample_sums %>% max # 1955 reads, 643 OTUs
+illu_bact_classic_raref_2reads %>% sample_sums %>% max # 1624 reads, 614 OTUs
 
 nano_bact_classic_raref <- rarefy_even_depth(nano_bact, sample.size =(illu_bact_classic_raref %>% sample_sums %>% min),  rngseed = T) # Coverage value was set to the minimum observed value across bact samples (0.9996036)
 nano_bact_classic_raref_2reads <- microbiome::core(nano_bact_classic_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-nano_bact_classic_raref_2reads %>% sample_sums %>% max # 1923 reads (singletons removed), 831 OTUs
+nano_bact_classic_raref_2reads %>% sample_sums %>% max # 1593 reads (singletons removed), 954 OTUs
 
 
 
@@ -331,64 +336,118 @@ setdiff(nano_bact_phyla@tax_table[,2],illu_bact_phyla@tax_table[,2]) # 11 phylum
 ###### OTUs per phyla, both methods
 ##########################################
 ###### First: coverage-based rarefaction
-theme_set(theme_classic2())
-otu_phyla_no_singleton <- read.csv("/Users/tonyrobinet/sync/mangroves/M2_Alice/resultats/silva_primers_ONT_Illumina/phyla_all_tag_raref_no_singleton.csv") %>% as.data.frame()
-otu_phyla_no_singleton <- otu_phyla_no_singleton %>% mutate(illumina=-(illumina))
+illu_bact_raref_2reads_phy <- tax_glom(illu_bact_raref_2reads, taxrank = "Phylum")
+nano_bact_raref_2reads_phy <- tax_glom(nano_bact_raref_2reads, taxrank = "Phylum")
+phyla_illu <- illu_bact_raref_2reads_phy@tax_table[,2]
+phyla_nano <- nano_bact_raref_2reads_phy@tax_table[,2]
+phyla_illu %>% length() ## 45
+phyla_nano %>% length() ## 54
+taxa_names(illu_bact_raref_2reads_phy) <- phyla_illu
+taxa_names(nano_bact_raref_2reads_phy) <- phyla_nano
+
+species_illu <- paste(illu_bact_raref_2reads@tax_table[,2],illu_bact_raref_2reads@tax_table[,3],illu_bact_raref_2reads@tax_table[,4],
+                      illu_bact_raref_2reads@tax_table[,5],illu_bact_raref_2reads@tax_table[,6],illu_bact_raref_2reads@tax_table[,7])
+species_nano <- paste(nano_bact_raref_2reads@tax_table[,2],nano_bact_raref_2reads@tax_table[,3],nano_bact_raref_2reads@tax_table[,4],
+                      nano_bact_raref_2reads@tax_table[,5],nano_bact_raref_2reads@tax_table[,6],nano_bact_raref_2reads@tax_table[,7])
+taxa_names(illu_bact_raref_2reads) <- species_illu
+taxa_names(nano_bact_raref_2reads) <- species_nano
+
+## only bacteria
+illu_bact_raref_2reads <- subset_taxa(illu_bact_raref_2reads, Kingdom=="Bacteria")
+spec_by_phy_illu <- table(as.data.frame(illu_bact_raref_2reads@tax_table[,1:2])) %>% t() %>% as.data.frame() 
+colnames(spec_by_phy_illu)=c("Phylum","Kingdom","Illumina")
+spec_by_phy_illu[spec_by_phy_illu==0] <- NA
+spec_by_phy_illu<-spec_by_phy_illu[complete.cases(spec_by_phy_illu),]
+spec_by_phy_illu <- spec_by_phy_illu %>% arrange(-Illumina)
+
+spec_by_phy_nano <- table(as.data.frame(nano_bact_raref_2reads@tax_table[,1:2])) %>% t() %>% as.data.frame() 
+colnames(spec_by_phy_nano)=c("Phylum","Kingdom","Nanopore")
+spec_by_phy_nano[spec_by_phy_nano==0] <- NA
+spec_by_phy_nano<-spec_by_phy_nano[complete.cases(spec_by_phy_nano),]
+spec_by_phy_nano <- spec_by_phy_nano %>% arrange(-Nanopore)
+
+otu_phyla_no_singleton <- full_join(spec_by_phy_illu, spec_by_phy_nano, by=c("Kingdom","Phylum"))
+otu_phyla_no_singleton <- otu_phyla_no_singleton %>% mutate(Illumina=-(Illumina))
+otu_phyla_no_singleton$Phylum <- paste(rownames(otu_phyla_no_singleton), otu_phyla_no_singleton$Phylum)
+
 otu_phyla_no_singleton_m <- melt(otu_phyla_no_singleton)
 otu_phyla_no_singleton_m <- otu_phyla_no_singleton_m[!is.na(otu_phyla_no_singleton_m$value),]
+otu_phyla_no_singleton_m$Phylum <- factor(otu_phyla_no_singleton_m$Phylum, levels = unique(otu_phyla_no_singleton_m$Phylum),
+                                                  ordered=TRUE)
+otu_phyla_no_singleton_m %>% head
 
-##pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_mirror_histograms_otu_phyla_no_singleton.pdf", width=8, height=10)
+
+##pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_mirror_histograms_otu_phy_coverage_no_singleton_bact_only.pdf", width=8, height=10)
 ggplot(otu_phyla_no_singleton_m, aes(x=factor(Phylum), y=value, fill=variable)) + geom_bar(stat='identity') + 
-  scale_x_discrete(limits=rev) + scale_y_continuous(name="Number of OTUs (species)", limits=c(-250,750)) + 
+  scale_x_discrete(limits=rev) + scale_y_continuous(name="Number of OTUs (species)", limits=c(-200,500)) + 
   geom_text(aes(label =value)) + coord_flip()
 ##dev.off()
 
 
-####### OTUs per Proteobacteria orders, both methods
-theme_set(theme_classic2())
-otu_proteo_no_singleton <- read.csv("/Users/tonyrobinet/sync/mangroves/M2_Alice/resultats/silva_primers_ONT_Illumina/orders_proteobact_all_raref_no_singleton.csv") %>% as.data.frame()
-otu_proteo_no_singleton <- otu_proteo_no_singleton %>% mutate(illumina=-(illumina))
-otu_proteo_no_singleton_m <- melt(otu_proteo_no_singleton)
-otu_proteo_no_singleton_m <- otu_proteo_no_singleton_m[!is.na(otu_proteo_no_singleton_m$value),]
 
-##pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_mirror_histograms_otu_orders_proteo_no_singleton.pdf", width=8, height=12)
-ggplot(otu_proteo_no_singleton_m, aes(x=factor(Order), y=value, fill=variable)) + geom_bar(stat='identity') + 
-  scale_x_discrete(limits=rev) + scale_y_continuous(name="Number of OTUs (species)") +
-  geom_text(aes(label =value)) + coord_flip()
-##dev.off()
+#### distribution of reads per taxa rank
+illu_bact_raref_2reads@otu_table %>% sample_sums() %>% sum() # 135692 reads
+nano_bact_raref_2reads@otu_table %>% sample_sums() %>% sum() # 265650 reads
+reads_illu_bact_coverage <- table(illu_bact_raref_2reads@otu_table) %>% as.data.frame()
+reads_nano_bact_coverage <- table(nano_bact_raref_2reads@otu_table) %>% as.data.frame()
 
-
-illu_all_core <- core(microbiome::transform(tax_glom(illu_all_raref_2reads, taxrank = "Phylum"), "compositional"), detection = 0, prevalence = 50/100)
-illu_all_core@tax_table
-nano_all_core <- core(microbiome::transform(tax_glom(nano_all_raref_2reads, taxrank = "Phylum"), "compositional"), detection = 0, prevalence = 50/100)
-nano_all_core@tax_table
 
 
 ##########################################
 ###### Second: classical rarefaction
 theme_set(theme_classic2())
-otu_phyla_classic_no_singleton <- read.csv("/Users/tonyrobinet/sync/mangroves/M2_Alice/resultats/silva_primers_ONT_Illumina/phyla_all_tag_classic_raref_no_singleton.csv") %>% as.data.frame()
-otu_phyla_classic_no_singleton <- otu_phyla_classic_no_singleton %>% mutate(illumina=-(illumina))
+
+illu_bact_classic_raref_2reads <- subset_taxa(illu_bact_classic_raref_2reads, Kingdom=="Bacteria")
+spec_by_phy_classic_illu <- table(as.data.frame(illu_bact_classic_raref_2reads@tax_table[,1:2])) %>% t() %>% as.data.frame() 
+colnames(spec_by_phy_classic_illu)=c("Phylum","Kingdom","Illumina")
+spec_by_phy_classic_illu[spec_by_phy_classic_illu==0] <- NA
+spec_by_phy_classic_illu<-spec_by_phy_classic_illu[complete.cases(spec_by_phy_classic_illu),]
+spec_by_phy_classic_illu <- spec_by_phy_classic_illu %>% arrange(-Illumina)
+
+spec_by_phy_classic_nano <- table(as.data.frame(nano_bact_classic_raref_2reads@tax_table[,1:2])) %>% t() %>% as.data.frame() 
+colnames(spec_by_phy_classic_nano)=c("Phylum","Kingdom","Nanopore")
+spec_by_phy_classic_nano[spec_by_phy_classic_nano==0] <- NA
+spec_by_phy_classic_nano<-spec_by_phy_classic_nano[complete.cases(spec_by_phy_classic_nano),]
+spec_by_phy_classic_nano <- spec_by_phy_classic_nano %>% arrange(-Nanopore)
+
+otu_phyla_classic_no_singleton <- full_join(spec_by_phy_classic_illu, spec_by_phy_classic_nano, by=c("Kingdom","Phylum"))
+otu_phyla_classic_no_singleton <- otu_phyla_classic_no_singleton %>% mutate(Illumina=-(Illumina))
+otu_phyla_classic_no_singleton$Phylum <- paste(rownames(otu_phyla_classic_no_singleton), otu_phyla_classic_no_singleton$Phylum)
+
 otu_phyla_classic_no_singleton_m <- melt(otu_phyla_classic_no_singleton)
 otu_phyla_classic_no_singleton_m <- otu_phyla_classic_no_singleton_m[!is.na(otu_phyla_classic_no_singleton_m$value),]
+otu_phyla_classic_no_singleton_m$Phylum <- factor(otu_phyla_classic_no_singleton_m$Phylum, levels = unique(otu_phyla_classic_no_singleton_m$Phylum),
+                                                  ordered=TRUE)
+otu_phyla_classic_no_singleton_m %>% head
 
-##pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_mirror_histograms_otu_phyla_classic_no_singleton.pdf", width=8, height=10)
+
+##pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_mirror_histograms_otu_phy_classic_no_singleton_bact_only.pdf", width=8, height=10)
 ggplot(otu_phyla_classic_no_singleton_m, aes(x=factor(Phylum), y=value, fill=variable)) + geom_bar(stat='identity') + 
-  scale_x_discrete(limits=rev) + scale_y_continuous(name="Number of OTUs (species)", limits=c(-250,750)) + 
+  scale_x_discrete(limits=rev) + scale_y_continuous(name="Number of OTUs (species)", limits=c(-200,500)) + 
   geom_text(aes(label =value)) + coord_flip()
 ##dev.off()
 
 
-illu_all_classic_core <- core(microbiome::transform(tax_glom(illu_all_classic_raref_2reads, taxrank = "Phylum"), "compositional"), detection = 0, prevalence = 50/100)
-illu_all_classic_core@tax_table
-nano_all_classic_core <- core(microbiome::transform(tax_glom(nano_all_classic_raref_2reads, taxrank = "Phylum"), "compositional"), detection = 0, prevalence = 50/100)
-nano_all_classic_core@tax_table[,2]
 
-setdiff(as.vector(illu_bact_raref_2reads@tax_table[,2]),as.vector(illu_bact_classic_raref_2reads@tax_table[,2])) # 4 more phyla with coverage-based raref
-setdiff(as.vector(illu_bact_classic_raref_2reads@tax_table[,2]),as.vector(illu_bact_raref_2reads@tax_table[,2])) # 4 more phyla with classic raref
 
-setdiff(as.vector(nano_all_raref_2reads@tax_table[,2]),as.vector(nano_all_classic_raref_2reads@tax_table[,2])) # 0
-setdiff(as.vector(nano_all_classic_raref_2reads@tax_table[,2]),as.vector(nano_all_raref_2reads@tax_table[,2])) # 0
+
+illu_bact_classic_core <- core(microbiome::transform(tax_glom(illu_bact_classic_raref_2reads, taxrank = "Phylum"), "compositional"), detection = 0, prevalence = 50/100)
+illu_bact_classic_core@tax_table[,2] %>% as.vector()
+nano_bact_classic_core <- core(microbiome::transform(tax_glom(nano_bact_classic_raref_2reads, taxrank = "Phylum"), "compositional"), detection = 0, prevalence = 50/100)
+nano_bact_classic_core@tax_table[,2] %>% as.vector()
+
+
+
+illu_bact_core <- core(microbiome::transform(tax_glom(illu_bact_raref_2reads, taxrank = "Phylum"), "compositional"), detection = 0, prevalence = 50/100)
+illu_bact_core@tax_table[,2]
+nano_bact_core <- core(microbiome::transform(tax_glom(nano_bact_raref_2reads, taxrank = "Phylum"), "compositional"), detection = 0, prevalence = 50/100)
+nano_bact_core@tax_table[,2]
+
+setdiff(as.vector(illu_bact_raref_2reads@tax_table[,2]),as.vector(illu_bact_classic_raref_2reads@tax_table[,2])) # 6 more phyla with coverage-based raref
+setdiff(as.vector(illu_bact_classic_raref_2reads@tax_table[,2]),as.vector(illu_bact_raref_2reads@tax_table[,2])) # 0
+
+setdiff(as.vector(nano_bact_raref_2reads@tax_table[,2]),as.vector(nano_bact_classic_raref_2reads@tax_table[,2])) # 10
+setdiff(as.vector(nano_bact_classic_raref_2reads@tax_table[,2]),as.vector(nano_bact_raref_2reads@tax_table[,2])) # 1
 
 
 
