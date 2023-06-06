@@ -1,0 +1,55 @@
+SAMPLE,BARCODE,ECH,SITE,LOCALISATION,SEQ,TRIPLICATS
+1AP_nano,barcode01_1400_1600_q10.fastq,1a,Babin,Sea,Nanopore,1P
+1AS_nano,barcode37_1400_1600_q10.fastq,1a,Riviere salee,Sea,Nanopore,1S
+1BP_nano,barcode13_1400_1600_q10.fastq,1b,Babin,Sea,Nanopore,1P
+1BS_nano,barcode49_1400_1600_q10.fastq,1b,Riviere salee,Sea,Nanopore,1S
+1CP_nano,barcode25_1400_1600_q10.fastq,1c,Babin,Sea,Nanopore,1P
+1CS_nano,barcode61_1400_1600_q10.fastq,1c,Riviere salee,Sea,Nanopore,1S
+2AP_nano,barcode73_1400_1600_q10.fastq,2a,Babin,Middle,Nanopore,2P
+2AS_nano,barcode14_1400_1600_q10.fastq,2a,Riviere salee,Middle,Nanopore,2S
+2BP_nano,barcode85_1400_1600_q10.fastq,2b,Babin,Middle,Nanopore,2P
+2BS_nano,barcode26_1400_1600_q10.fastq,2b,Riviere salee,Middle,Nanopore,2S
+2CP_nano,barcode02_1400_1600_q10.fastq,2c,Babin,Middle,Nanopore,2P
+2CS_nano,barcode38_1400_1600_q10.fastq,2c,Riviere salee,Middle,Nanopore,2S
+3AP_nano,barcode50_1400_1600_q10.fastq,3a,Babin,Land,Nanopore,3P
+3AS_nano,barcode86_1400_1600_q10.fastq,3a,Riviere salee,Land,Nanopore,3S
+3BP_nano,barcode62_1400_1600_q10.fastq,3b,Babin,Land,Nanopore,3P
+3BS_nano,barcode03_1400_1600_q10.fastq,3b,Riviere salee,Land,Nanopore,3S
+3CP_nano,barcode74_1400_1600_q10.fastq,3c,Babin,Land,Nanopore,3P
+3CS_nano,barcode15_1400_1600_q10.fastq,3c,Riviere salee,Land,Nanopore,3S
+4AP_nano,barcode27_1400_1600_q10.fastq,4a,Babin,Sea,Nanopore,4P
+4AS_nano,barcode63_1400_1600_q10.fastq,4a,Riviere salee,Sea,Nanopore,4S
+4BP_nano,barcode39_1400_1600_q10.fastq,4b,Babin,Sea,Nanopore,4P
+4BS_nano,barcode75_1400_1600_q10.fastq,4b,Riviere salee,Sea,Nanopore,4S
+4CP_nano,barcode51_1400_1600_q10.fastq,4c,Babin,Sea,Nanopore,4P
+4CS_nano,barcode87_1400_1600_q10.fastq,4cs,Riviere salee,Sea,Nanopore,4S
+5AP_nano,barcode05_1400_1600_q10.fastq,5a,Babin,Middle,Nanopore,5P
+5AS_nano,barcode41_1400_1600_q10.fastq,5a,Riviere salee,Middle,Nanopore,5S
+5BP_nano,barcode17_1400_1600_q10.fastq,5b,Babin,Middle,Nanopore,5P
+5BS_nano,barcode53_1400_1600_q10.fastq,5b,Riviere salee,Middle,Nanopore,5S
+5CP_nano,barcode29_1400_1600_q10.fastq,5c,Babin,Middle,Nanopore,5P
+5CS_nano,barcode65_1400_1600_q10.fastq,5c,Riviere salee,Middle,Nanopore,5S
+6AP_nano,barcode77_1400_1600_q10.fastq,6a,Babin,Land,Nanopore,6P
+6AS_nano,barcode18_1400_1600_q10.fastq,6a,Riviere salee,Land,Nanopore,6S
+6BP_nano,barcode89_1400_1600_q10.fastq,6b,Babin,Land,Nanopore,6P
+6BS_nano,barcode30_1400_1600_q10.fastq,6b,Riviere salee,Land,Nanopore,6S
+6CP_nano,barcode06_1400_1600_q10.fastq,6c,Babin,Land,Nanopore,6P
+6CS_nano,barcode42_1400_1600_q10.fastq,6c,Riviere salee,Land,Nanopore,6S
+7AP_nano,barcode54_1400_1600_q10.fastq,7a,Babin,Sea,Nanopore,7P
+7AS_nano,barcode90_1400_1600_q10.fastq,7a,Riviere salee,Sea,Nanopore,7S
+7BP_nano,barcode66_1400_1600_q10.fastq,7b,Babin,Sea,Nanopore,7P
+7BS_nano,barcode07_1400_1600_q10.fastq,7b,Riviere salee,Sea,Nanopore,7S
+7CP_nano,barcode78_1400_1600_q10.fastq,7c,Babin,Sea,Nanopore,7P
+7CS_nano,barcode19_1400_1600_q10.fastq,7c,Riviere salee,Sea,Nanopore,7S
+8AP_nano,barcode31_1400_1600_q10.fastq,8a,Babin,Middle,Nanopore,8P
+8AS_nano,barcode67_1400_1600_q10.fastq,8a,Riviere salee,Middle,Nanopore,8S
+8BP_nano,barcode43_1400_1600_q10.fastq,8b,Babin,Middle,Nanopore,8P
+8BS_nano,barcode79_1400_1600_q10.fastq,8b,Riviere salee,Middle,Nanopore,8S
+8CP_nano,barcode55_1400_1600_q10.fastq,8c,Babin,Middle,Nanopore,8P
+8CS_nano,barcode91_1400_1600_q10.fastq,8c,Riviere salee,Middle,Nanopore,8S
+9AP_nano,barcode08_1400_1600_q10.fastq,9a,Babin,Land,Nanopore,9P
+9AS_nano,barcode44_1400_1600_q10.fastq,9a,Riviere salee,Land,Nanopore,9S
+9BP_nano,barcode20_1400_1600_q10.fastq,9b,Babin,Land,Nanopore,9P
+9BS_nano,barcode56_1400_1600_q10.fastq,9b,Riviere salee,Land,Nanopore,9S
+9CP_nano,barcode32_1400_1600_q10.fastq,9c,Babin,Land,Nanopore,9P
+9CS_nano,barcode68_1400_1600_q10.fastq,9c,Riviere salee,Land,Nanopore,9S

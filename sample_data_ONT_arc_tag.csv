@@ -1,0 +1,55 @@
+BARCODE,SAMPLE,SITE,LOCALISATION,TRIPLICATS,SEQ
+barcode01_900_1100_q10.fastq,1AP_nano,Babin,Sea,1P,Nanopore
+barcode37_900_1100_q10.fastq,1AS_nano,Riviere salee,Sea,1S,Nanopore
+barcode13_900_1100_q10.fastq,1BP_nano,Babin,Sea,1P,Nanopore
+barcode49_900_1100_q10.fastq,1BS_nano,Riviere salee,Sea,1S,Nanopore
+barcode25_900_1100_q10.fastq,1CP_nano,Babin,Sea,1P,Nanopore
+barcode61_900_1100_q10.fastq,1CS_nano,Riviere salee,Sea,1S,Nanopore
+barcode73_900_1100_q10.fastq,2AP_nano,Babin,Middle,2P,Nanopore
+barcode14_900_1100_q10.fastq,2AS_nano,Riviere salee,Middle,2S,Nanopore
+barcode85_900_1100_q10.fastq,2BP_nano,Babin,Middle,2P,Nanopore
+barcode26_900_1100_q10.fastq,2BS_nano,Riviere salee,Middle,2S,Nanopore
+barcode02_900_1100_q10.fastq,2CP_nano,Babin,Middle,2P,Nanopore
+barcode38_900_1100_q10.fastq,2CS_nano,Riviere salee,Middle,2S,Nanopore
+barcode50_900_1100_q10.fastq,3AP_nano,Babin,Land,3P,Nanopore
+barcode86_900_1100_q10.fastq,3AS_nano,Riviere salee,Land,3S,Nanopore
+barcode62_900_1100_q10.fastq,3BP_nano,Babin,Land,3P,Nanopore
+barcode03_900_1100_q10.fastq,3BS_nano,Riviere salee,Land,3S,Nanopore
+barcode74_900_1100_q10.fastq,3CP_nano,Babin,Land,3P,Nanopore
+barcode15_900_1100_q10.fastq,3CS_nano,Riviere salee,Land,3S,Nanopore
+barcode27_900_1100_q10.fastq,4AP_nano,Babin,Sea,4P,Nanopore
+barcode63_900_1100_q10.fastq,4AS_nano,Riviere salee,Sea,4S,Nanopore
+barcode39_900_1100_q10.fastq,4BP_nano,Babin,Sea,4P,Nanopore
+barcode75_900_1100_q10.fastq,4BS_nano,Riviere salee,Sea,4S,Nanopore
+barcode51_900_1100_q10.fastq,4CP_nano,Babin,Sea,4P,Nanopore
+barcode87_900_1100_q10.fastq,4CS_nano,Riviere salee,Sea,4S,Nanopore
+barcode04_900_1100_q10.fastq,5AP_nano,Babin,Middle,5P,Nanopore
+barcode40_900_1100_q10.fastq,5AS_nano,Riviere salee,Middle,5S,Nanopore
+barcode16_900_1100_q10.fastq,5BP_nano,Babin,Middle,5P,Nanopore
+barcode52_900_1100_q10.fastq,5BS_nano,Riviere salee,Middle,5S,Nanopore
+barcode28_900_1100_q10.fastq,5CP_nano,Babin,Middle,5P,Nanopore
+barcode64_900_1100_q10.fastq,5CS_nano,Riviere salee,Middle,5S,Nanopore
+barcode76_900_1100_q10.fastq,6AP_nano,Babin,Land,6P,Nanopore
+barcode17_900_1100_q10.fastq,6AS_nano,Riviere salee,Land,6S,Nanopore
+barcode88_900_1100_q10.fastq,6BP_nano,Babin,Land,6P,Nanopore
+barcode29_900_1100_q10.fastq,6BS_nano,Riviere salee,Land,6S,Nanopore
+barcode05_900_1100_q10.fastq,6CP_nano,Babin,Land,6P,Nanopore
+barcode41_900_1100_q10.fastq,6CS_nano,Riviere salee,Land,6S,Nanopore
+barcode53_900_1100_q10.fastq,7AP_nano,Babin,Sea,7P,Nanopore
+barcode89_900_1100_q10.fastq,7AS_nano,Riviere salee,Sea,7S,Nanopore
+barcode65_900_1100_q10.fastq,7BP_nano,Babin,Sea,7P,Nanopore
+barcode06_900_1100_q10.fastq,7BS_nano,Riviere salee,Sea,7S,Nanopore
+barcode77_900_1100_q10.fastq,7CP_nano,Babin,Sea,7P,Nanopore
+barcode18_900_1100_q10.fastq,7CS_nano,Riviere salee,Sea,7S,Nanopore
+barcode30_900_1100_q10.fastq,8AP_nano,Babin,Middle,8P,Nanopore
+barcode66_900_1100_q10.fastq,8AS_nano,Riviere salee,Middle,8S,Nanopore
+barcode42_900_1100_q10.fastq,8BP_nano,Babin,Middle,8P,Nanopore
+barcode78_900_1100_q10.fastq,8BS_nano,Riviere salee,Middle,8S,Nanopore
+barcode54_900_1100_q10.fastq,8CP_nano,Babin,Middle,8P,Nanopore
+barcode90_900_1100_q10.fastq,8CS_nano,Riviere salee,Middle,8S,Nanopore
+barcode07_900_1100_q10.fastq,9AP_nano,Babin,Land,9P,Nanopore
+barcode43_900_1100_q10.fastq,9AS_nano,Riviere salee,Land,9S,Nanopore
+barcode19_900_1100_q10.fastq,9BP_nano,Babin,Land,9P,Nanopore
+barcode55_900_1100_q10.fastq,9BS_nano,Riviere salee,Land,9S,Nanopore
+barcode31_900_1100_q10.fastq,9CP_nano,Babin,Land,9P,Nanopore
+barcode67_900_1100_q10.fastq,9CS_nano,Riviere salee,Land,9S,Nanopore

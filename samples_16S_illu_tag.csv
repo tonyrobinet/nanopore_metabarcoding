@@ -1,0 +1,55 @@
+SAMPLE,TRIPLICATS,ECH,SITE,LOCALISATION,SEQ,MARK
+1AP_illu,1p,1a,Babin,Sea,Illumina,16S
+1AS_illu,1s,1a,Riviere salee,Sea,Illumina,16S
+1BP_illu,1p,1b,Babin,Sea,Illumina,16S
+1BS_illu,1s,1b,Riviere salee,Sea,Illumina,16S
+1CP_illu,1p,1c,Babin,Sea,Illumina,16S
+1CS_illu,1s,1c,Riviere salee,Sea,Illumina,16S
+2AP_illu,2p,2a,Babin,Middle,Illumina,16S
+2AS_illu,2s,2a,Riviere salee,Middle,Illumina,16S
+2BP_illu,2p,2b,Babin,Middle,Illumina,16S
+2BS_illu,2s,2b,Riviere salee,Middle,Illumina,16S
+2CP_illu,2p,2c,Babin,Middle,Illumina,16S
+2CS_illu,2s,2c,Riviere salee,Middle,Illumina,16S
+3AP_illu,3p,3a,Babin,Land,Illumina,16S
+3AS_illu,3s,3a,Riviere salee,Land,Illumina,16S
+3BP_illu,3p,3b,Babin,Land,Illumina,16S
+3BS_illu,3s,3b,Riviere salee,Land,Illumina,16S
+3CP_illu,3p,3c,Babin,Land,Illumina,16S
+3CS_illu,3s,3c,Riviere salee,Land,Illumina,16S
+4AP_illu,4p,4a,Babin,Sea,Illumina,16S
+4AS_illu,4s,4a,Riviere salee,Sea,Illumina,16S
+4BP_illu,4p,4b,Babin,Sea,Illumina,16S
+4BS_illu,4s,4b,Riviere salee,Sea,Illumina,16S
+4CP_illu,4p,4c,Babin,Sea,Illumina,16S
+4CS_illu,4s,4cs,Riviere salee,Sea,Illumina,16S
+5AP_illu,5p,5a,Babin,Middle,Illumina,16S
+5AS_illu,5s,5a,Riviere salee,Middle,Illumina,16S
+5BP_illu,5p,5b,Babin,Middle,Illumina,16S
+5BS_illu,5s,5b,Riviere salee,Middle,Illumina,16S
+5CP_illu,5p,5c,Babin,Middle,Illumina,16S
+5CS_illu,5s,5c,Riviere salee,Middle,Illumina,16S
+6AP_illu,6p,6a,Babin,Land,Illumina,16S
+6AS_illu,6s,6a,Riviere salee,Land,Illumina,16S
+6BP_illu,6p,6b,Babin,Land,Illumina,16S
+6BS_illu,6s,6b,Riviere salee,Land,Illumina,16S
+6CP_illu,6p,6c,Babin,Land,Illumina,16S
+6CS_illu,6s,6c,Riviere salee,Land,Illumina,16S
+7AP_illu,7p,7a,Babin,Sea,Illumina,16S
+7AS_illu,7s,7a,Riviere salee,Sea,Illumina,16S
+7BP_illu,7p,7b,Babin,Sea,Illumina,16S
+7BS_illu,7s,7b,Riviere salee,Sea,Illumina,16S
+7CP_illu,7p,7c,Babin,Sea,Illumina,16S
+7CS_illu,7s,7c,Riviere salee,Sea,Illumina,16S
+8AP_illu,8p,8a,Babin,Middle,Illumina,16S
+8AS_illu,8s,8a,Riviere salee,Middle,Illumina,16S
+8BP_illu,8p,8b,Babin,Middle,Illumina,16S
+8BS_illu,8s,8b,Riviere salee,Middle,Illumina,16S
+8CP_illu,8p,8c,Babin,Middle,Illumina,16S
+8CS_illu,8s,8c,Riviere salee,Middle,Illumina,16S
+9AP_illu,9p,9a,Babin,Land,Illumina,16S
+9AS_illu,9s,9a,Riviere salee,Land,Illumina,16S
+9BP_illu,9p,9b,Babin,Land,Illumina,16S
+9BS_illu,9s,9b,Riviere salee,Land,Illumina,16S
+9CP_illu,9p,9c,Babin,Land,Illumina,16S
+9CS_illu,9s,9c,Riviere salee,Land,Illumina,16S
