@@ -6,7 +6,7 @@
 ## by pulling out which OTUs seem to be associated with specific sites.
 library(randomForest)
 
-
+###################### phyloseq objects from script 5_main_phyloseq_ordinations.R
 illu_bact_raref_2reads
 nano_bact_raref_2reads
 illu_bact_raref_2reads_fam
