@@ -1,11 +1,12 @@
-PRe-processed data and scripts related to the MS:
+Pre-processed data and scripts related to the MS:
 "Nanopore long-reads reveal fine structure of prokaryotic communities in mangrove sediments, like Illumina short-reads but with twice more taxa""
 
 by
 Alice LEMOINNE, Guillaume DIRBERG, Myriam GEORGES & Tony ROBINET
 
+Raw sequences available at NCBI GenBank, BioProject ID PRJNA985243
 BioRxiv preprint : https://doi.org/10.1101/2023.06.06.541006
-############################################################
+##################################################################
 
 1_dada2_illu.R (R script) : With DADA2 R package, filter and trim demultiplexed raw fastq R1s and R2s, in order to make a table of unique Illumina sequences (ASVs) and their abundances, with no chimera
 
