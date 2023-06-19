@@ -11,6 +11,8 @@ Raw sequences available at NCBI Sequence Read Archive (SRA) GenBank, BioProject 
 BioRxiv preprint : https://doi.org/10.1101/2023.06.06.541006
 ##############
 
+Script files :
+
 1_dada2_illu.R (R script) : With DADA2 R package, filter and trim demultiplexed raw fastq R1s and R2s, in order to make a table of unique Illumina sequences (ASVs) and their abundances, with no chimera
 
 2_dada2_ONT.R (R script) : With DADA2 R package, filter and trim demultiplexed raw fastq, in order to make a table of unique Nanopore sequences (ASVs) and their abundances
