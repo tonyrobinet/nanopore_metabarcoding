@@ -8,7 +8,6 @@
 ## Nanopore detected 87.7% of the genus detected by Illumina
 ## Nanopore detected 69.7% of the species detected by Illumina
 
-
 #### SPECIES
 species_illu <- paste(illu_bact_raref_2reads@tax_table[,2],illu_bact_raref_2reads@tax_table[,3],illu_bact_raref_2reads@tax_table[,4],
                       illu_bact_raref_2reads@tax_table[,5],illu_bact_raref_2reads@tax_table[,6],illu_bact_raref_2reads@tax_table[,7])
