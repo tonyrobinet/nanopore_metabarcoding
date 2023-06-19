@@ -15,7 +15,6 @@ library(knitr)
 library(reshape2)
 library(gridExtra)
 library(upstartr)
-
 theme_set(theme_classic())
 
 ## Mock Ze is at the end of this script
