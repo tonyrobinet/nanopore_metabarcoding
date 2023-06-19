@@ -1,4 +1,4 @@
-Scripts related to the MS
+PRe-processed data and scripts related to the MS:
 "Nanopore long-reads reveal fine structure of prokaryotic communities in mangrove sediments, like Illumina short-reads but with twice more taxa""
 
 by
@@ -11,9 +11,9 @@ BioRxiv preprint : https://doi.org/10.1101/2023.06.06.541006
 
 2_dada2_ONT.R (R script) : With DADA2 R package, filter and trim demultiplexed raw fastq, in order to make a table of unique Nanopore sequences (ASVs) and their abundances
 
-3_qiime2_illu.ipynb (bash) : With the tools from Qiime2, extract 16SV4V5 sequences from the Illumina sequence table, then make 97% consensus sequences and assign them to the most reliable taxonomic rank, based on the SILVA database ; produces OTU .csv table for downstream analyses.
+3_qiime2_illu.ipynb (bash jupyter notebook) : With the tools from Qiime2, extract 16SV4V5 sequences from the Illumina sequence table, then make 97% consensus sequences and assign them to the most reliable taxonomic rank, based on the SILVA database ; produces OTU .csv table for downstream analyses.
 
-4_qiime2_ONT.ipynb (bash) : With the tools from Qiime2, make 97% consensus sequences from Nanopore ASV abundances, and assign them to the most reliable taxonomic rank, based on the SILVA database ; produces OTU .csv table for downstream analyses.
+4_qiime2_ONT.ipynb (bash jupyter notebook) : With the tools from Qiime2, make 97% consensus sequences from Nanopore ASV abundances, and assign them to the most reliable taxonomic rank, based on the SILVA database ; produces OTU .csv table for downstream analyses.
 
 5_main_phyloseq_ordinations.R (R script) : Make Phyloseq objects from OTU tables, then ordinations, Procrustean and co-inertia tests, Mantel test.
 
@@ -22,5 +22,6 @@ BioRxiv preprint : https://doi.org/10.1101/2023.06.06.541006
 7_randomForest_mangroves_intrasites.R (R script) : Script for determining the most influenced taxa by site factor by Random forest metho (figures in Supplementary material).
 
 8_iris_plots_microviz_illu_nano_mangroves.R (R script) : Script for drawing other figures in Supplementary material.
+
 
 Pre-processed aata files (.csv) are downloadable in this repo. They are composed, for each platform, by OTU abundances, taxonomic assignments and sample-data parameters. See scripts for any detail.
