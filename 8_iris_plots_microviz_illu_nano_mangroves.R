@@ -1,7 +1,7 @@
 library(microViz)
 library(phyloseq)
 
-## charger les objets phyloseq à partir du script2.R
+## Load phyloseq objects from the script 5_main_phyloseq_ordinations.R
 
 
 ########################################################################################
