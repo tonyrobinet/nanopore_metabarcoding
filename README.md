@@ -34,6 +34,9 @@ Script files :
 
 9_iris_plots_microviz_illu_nano_mangroves.R (R script) : Script for drawing other figures in Supplementary material.
 
-10_Suppl_Mat_Lemoinne2023_rev#1.pdf : Supplementary_material (version 3)
+##############
+Supplementary material
+
+Suppl_Mat_Lemoinne2023_rev#1.pdf : Supplementary_material (version 3)
 
 
