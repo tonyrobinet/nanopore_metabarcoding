@@ -7,12 +7,13 @@ Alice LEMOINNE, Guillaume DIRBERG, Myriam GEORGES & Tony ROBINET
 ##############
 Raw sequences available at NCBI Sequence Read Archive (SRA) GenBank, BioProject ID PRJNA985243.
 
+##############
 Pre-processed data files (.csv) are downloadable in this repo. They are composed, for each platform, by OTU abundances, taxonomic assignments and sample-data parameters. See scripts for any detail.
-##############
 
+##############
 BioRxiv preprint : [https://doi.org/10.1101/2023.06.06.541006](https://www.biorxiv.org/content/10.1101/2023.06.06.541006v3)
-##############
 
+##############
 Script files :
 
 1_dada2_illu.R (R script) : With DADA2 R package, filter and trim demultiplexed raw fastq R1s and R2s, in order to make a table of unique Illumina sequences (ASVs) and their abundances, with no chimera
