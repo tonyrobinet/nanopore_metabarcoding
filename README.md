@@ -5,7 +5,8 @@ by
 Alice LEMOINNE, Guillaume DIRBERG, Myriam GEORGES & Tony ROBINET
 
 ##############
-Raw sequences available at NCBI Sequence Read Archive (SRA) GenBank, BioProject ID PRJNA985243
+Raw sequences available at NCBI Sequence Read Archive (SRA) GenBank, BioProject ID PRJNA985243.
+
 Pre-processed data files (.csv) are downloadable in this repo. They are composed, for each platform, by OTU abundances, taxonomic assignments and sample-data parameters. See scripts for any detail.
 ##############
 
