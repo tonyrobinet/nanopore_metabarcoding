@@ -5,13 +5,13 @@ by
 Alice LEMOINNE, Guillaume DIRBERG, Myriam GEORGES & Tony ROBINET
 
 ##############
+BioRxiv preprint : [https://doi.org/10.1101/2023.06.06.541006](https://www.biorxiv.org/content/10.1101/2023.06.06.541006v3)
+
+##############
 Raw sequences available at NCBI Sequence Read Archive (SRA) GenBank, BioProject ID PRJNA985243.
 
 ##############
 Pre-processed data files (.csv) are downloadable in this repo. They are composed, for each platform, by OTU abundances, taxonomic assignments and sample-data parameters. See scripts for any detail.
-
-##############
-BioRxiv preprint : [https://doi.org/10.1101/2023.06.06.541006](https://www.biorxiv.org/content/10.1101/2023.06.06.541006v3)
 
 ##############
 Script files :
