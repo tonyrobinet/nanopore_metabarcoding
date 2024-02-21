@@ -1,5 +1,8 @@
+source("~/sync/mangroves/M2_Alice/resultats/donnees_scripts/github/nanopore_metabarcoding/5_main_phyloseq_objects.R")
+
+
 ########################################## ORDINATIONS
-#############################
+############################# No singletons
 ### PCoA Nano Vs Illu
 
 PCoA_illu_bact_raref_2reads <- ordinate(illu_bact_raref_2reads, method = "PCoA", distance = "bray")
@@ -47,21 +50,23 @@ ggarrange(plot_illu_pcoa_bray_tripl, plot_nano_pcoa_bray_tripl, ncol=1, common.l
 ## Procrustes analysis on PCoA (Vegan)
 ## following John Quensen's tutorial https://john-quensen.com/tutorials/procrustes-analysis/
 
-pro2ax <- procrustes(X = PCoA_illu_bact_raref_2reads$vectors[,1:2], Y = PCoA_nano_bact_raref_2reads$vectors[,1:2], symmetric = TRUE)
-pro20ax <- procrustes(X = PCoA_illu_bact_raref_2reads$vectors[,1:20], Y = PCoA_nano_bact_raref_2reads$vectors[,1:20], symmetric = TRUE)
+pro2ax_2r <- procrustes(X = PCoA_illu_bact_raref_2reads$vectors[,1:2], Y = PCoA_nano_bact_raref_2reads$vectors[,1:2], symmetric = TRUE)
+pro20ax_2r <- procrustes(X = PCoA_illu_bact_raref_2reads$vectors[,1:20], Y = PCoA_nano_bact_raref_2reads$vectors[,1:20], symmetric = TRUE)
 
 ##pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_Procrustes2_coverage-based_raref.pdf", width=6, height=8)
-plot(pro2ax, kind = 1)
+plot(pro2ax_2r, kind = 1)
 ##dev.off()
 
 ##pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_residuals_Procrustes2_coverage-based_raref.pdf", width=6, height=3)
-plot(pro20ax, kind = 2)
+plot(pro20ax_2r, kind = 2)
 ##dev.off()
 
 ## Significance test
 protest(X = PCoA_illu_bact_raref_2reads$vectors[,1:20], Y = PCoA_nano_bact_raref_2reads$vectors[,1:20], scores = "sites", scale=TRUE, permutations = 999)
 ## Correlation in a symmetric Procrustes rotation: 0.793
 ## Significance:  0.001
+
+
 
 
 
@@ -267,11 +272,11 @@ nano_bact_raref_2reads_rivsalee_bray$seq <- rep("Nanopore Rivière salée",(nano
 
 all_bray_sites <- rbind(illu_bact_raref_2reads_babin_bray,illu_bact_raref_2reads_rivsalee_bray,nano_bact_raref_2reads_babin_bray,nano_bact_raref_2reads_rivsalee_bray)
 
-pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_bray_dispersions_sites_spec_species.pdf", width=6, height=6)
+##pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_bray_dispersions_sites_spec_species.pdf", width=6, height=6)
 ggplot(data=all_bray_sites, aes(value, seq)) + geom_boxplot() + coord_flip() + 
   theme(axis.text.x = element_text(size=12, angle = 90, vjust = 0.5, hjust=1), axis.text.y = element_text(size=12)) +
   xlab("Bray-Curtis index")
-dev.off()
+##dev.off()
 
 
 
@@ -299,9 +304,9 @@ permdisp_all_Bray_bact_trip <- betadisper(bray_all_bact_dist, env_all$TRIPLICATS
 plot(permdisp_all_Bray_bact_seq)
 boxplot(permdisp_all_Bray_bact_seq, col=c("lightsalmon","cyan3")) # ?boxplot
 
-pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_bray_bact_dispersions_triplicats_species.pdf", width=6, height=4)
+##pdf("~/sync/mangroves/M2_Alice/draft/figures/figure_bray_bact_dispersions_triplicats_species.pdf", width=6, height=4)
 boxplot(permdisp_all_Bray_bact_trip, col=c("lightsalmon","cyan3"))
-dev.off()
+##dev.off()
 
 
 df <- permdisp_all_Bray_bact_trip$distances %>% as.data.frame()

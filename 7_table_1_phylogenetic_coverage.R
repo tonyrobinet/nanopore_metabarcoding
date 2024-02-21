@@ -1,3 +1,5 @@
+source("~/sync/mangroves/M2_Alice/resultats/donnees_scripts/github/nanopore_metabarcoding/5_main_phyloseq_objects.R")
+
 #########################################################################@
 ########################################@
 ## Phylogenetic coverage of bacteria from Illumina and Nanopore sequencing
@@ -27,7 +29,7 @@ taxa_names(bact_raref_2reads) <- species_all
 
 species_illu %>% length() ## 749
 species_nano %>% length() ## 1495
-species_all %>% length() ## 1722
+species_all %>% length() ## 2244
 setdiff(species_illu,species_nano) %>% length() # 227 species detected by illu only
 setdiff(species_nano,species_illu) %>% length() # 973 species detected by nano only
 intersect(species_illu,species_nano) %>% length() ## 522
@@ -41,15 +43,17 @@ sum(taxa_sums(subset_taxa(nano_bact_raref_2reads,Species!="__") %>% tax_select(t
 sum(taxa_sums(subset_taxa(illu_bact_raref_2reads,Species!="__") %>% tax_select(tax_list = intersect(species_illu,species_nano), n_typos = 0, ranks_searched = "Species"))) /
   sum(taxa_sums(subset_taxa(illu_bact_raref_2reads,Species!="__"))) # 84.7% of the Illumina reads are assigned to species detected by Nanopore (among assigned species)
 
+sum(taxa_sums(subset_taxa(nano_bact_raref_2reads,Phylum!="__") %>% tax_select(tax_list = intersect(species_illu,species_nano), n_typos = 0, ranks_searched = "Phylum"))) /
+  sum(taxa_sums(subset_taxa(nano_bact_raref_2reads,Phylum!="__"))) # 75.2% of the Nanopore reads are assigned to Phylum detected by Illumina (among assigned Phyla)
+sum(taxa_sums(subset_taxa(illu_bact_raref_2reads,Phylum!="__") %>% tax_select(tax_list = intersect(species_illu,species_nano), n_typos = 0, ranks_searched = "Phylum"))) /
+  sum(taxa_sums(subset_taxa(illu_bact_raref_2reads,Phylum!="__"))) # 90.3% of the Illumina reads are assigned to Phylum detected by Nanopore (among assigned Phyla)
 
-bact_raref_2reads@tax_table %>% head()
-bact_raref_2reads@tax_table %>% rownames == species_all
-which(species_all == intersect(species_illu,species_nano)) 
-species_all[50]
 
 library(stringr)
 table(str_count(setdiff(species_nano,species_illu), "__"))
 ## among the 973 species detected by nano only, 892 (91.7%) were identified to the genus rank.
+660+232+47+16+11+7
+660/973
 892/973
 7/11
 11/41
@@ -59,6 +63,7 @@ table(str_count(intersect(species_illu,species_nano), "__"))
 1-306/522
 1-147/393
 1-35/285
+
 # For nanopore, 529 unknown species over 1495, i.e. 35.4% unassigned species
 1 - ((subset_taxa(nano_bact_raref_2reads,Species=="__") %>% taxa_names() %>% length())/ 
        (nano_bact_raref_2reads %>% taxa_names() %>% length())) # 64.6% species assigned
@@ -107,7 +112,7 @@ genus_nano %>% length() ## 785
 setdiff(genus_illu,genus_nano) %>% length() # 55 genus detected by illu only
 setdiff(genus_nano,genus_illu) %>% length() # 392 genus detected by nano only
 (448-55)/448
-(448-393) + 785
+(448-392) + 785
 
 ## Nanopore detected 87.7% of the genus detected by Illumina
 

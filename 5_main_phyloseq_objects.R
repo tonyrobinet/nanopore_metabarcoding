@@ -18,8 +18,8 @@ library(upstartr)
 
 theme_set(theme_classic())
 
-## Mock Ze is at the end of this script
-##########################################
+## Mock Ze is in a special script (5.1_mock.R)
+##############################################
 ###########
 ### Phyloseq objects
 
@@ -60,7 +60,6 @@ illu_arc <- prune_samples(sample_sums(illu_arc)!=0,illu_arc)
 illu_arc %>% sample_sums %>% max # min 29 reads, mean 193 reads, max 620 reads
 
 illu_bact <- subset_taxa(mangrove_16Sv4_tag, Kingdom=="Bacteria")
-768+31
 
 
 ## nano with sample tag
@@ -126,7 +125,6 @@ nano_all <- merge_phyloseq(mangrove_16SONT_tag, mangrove_arc_ONT_tag)
 
 nano_arc <- subset_taxa(nano_all, Kingdom=="Archaea")
 nano_bact <- subset_taxa(nano_all, Kingdom=="Bacteria")
-3822+284
 
 
 ################################################################
@@ -143,12 +141,12 @@ nano_bact <- subset_taxa(nano_all, Kingdom=="Bacteria")
 
 illu_all_raref <- phyloseq_coverage_raref(mangrove_16Sv4_tag, correct_singletons = FALSE) # Coverage value was set to the minimum observed value across all samples (0.9996036)
 illu_all_raref_2reads <- microbiome::core(illu_all_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-illu_all_raref_2reads %>% sample_sums %>% max # mean 2783 reads, min 1541, max 5245, 773 OTUs
+illu_all_raref_2reads %>% sample_sums %>% sd # mean 2783 reads, sd 881.3, min 1541, max 5245, 773 OTUs
 ## write.csv(illu_all_raref_2reads@tax_table,"~/sync/mangroves/M2_Alice/resultats/silva_primers_ONT_Illumina/illu_all_raref_no_singleton.csv")
 
 nano_all_raref <- phyloseq_coverage_raref(nano_all, correct_singletons = FALSE) # Coverage value was set to the minimum observed value across all samples (0.9813344)
 nano_all_raref_2reads <- microbiome::core(nano_all_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-nano_all_raref_2reads %>% sample_sums %>% max # mean 19031 reads, min 6410, max 23682, 2124 OTUs
+nano_all_raref_2reads %>% sample_sums %>% sd # mean 19031 reads, min 6410, max 23682, 2124 OTUs
 all_raref_2reads <- merge_phyloseq(illu_all_raref_2reads, nano_all_raref_2reads)
 ## write.csv(nano_all_raref_2reads@tax_table,"~/sync/mangroves/M2_Alice/resultats/silva_primers_ONT_Illumina/nano_all_raref_no_singleton.csv")
 
@@ -158,7 +156,7 @@ all_raref_2reads <- merge_phyloseq(illu_all_raref_2reads, nano_all_raref_2reads)
 illu_bact <- subset_taxa(illu_bact, Kingdom=="Bacteria")
 illu_bact_raref <- phyloseq_coverage_raref(illu_bact, correct_singletons = FALSE) # Coverage value was set to the minimum observed value across bact samples (0.9995913)
 illu_bact_raref_2reads <- microbiome::core(illu_bact_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-illu_bact_raref_2reads %>% sample_sums %>% max # mean 2609 reads, min 1338, max 4991, 768 OTUs
+illu_bact_raref_2reads %>% sample_sums %>% sd # mean 2609 reads, min 1338, max 4991, 768 OTUs
 
 nano_bact_raref <- phyloseq_coverage_raref(nano_bact, correct_singletons = FALSE) # Coverage value was set to the minimum observed value across bact samples (0.9411947)
 nano_bact_raref_2reads <- microbiome::core(nano_bact_raref, detection=1, prevalence=0) # remove singletons after rarefaction
@@ -184,16 +182,16 @@ nano_proteo_raref_2reads <- subset_samples(proteo_raref_2reads, SEQ=="Nanopore")
 
 
 ## Unknown species (nb of OTUs, nb of reads)
-subset_taxa(illu_bact_raref_2reads, Species=="__") # 260 unknown species for illu (34.7% of the total species)
-subset_taxa(nano_bact_raref_2reads, Species=="__") # 529 unknown species for illu (33.50% of the total species)
-260/749
-529/1495
+subset_taxa(illu_bact_raref_2reads, Species=="__")
+subset_taxa(nano_bact_raref_2reads, Species=="__")
+260/749 # 260 unknown species for illu (34.7% of the total species)
+529/1495 # 529 unknown species for illu (33.50% of the total species)
 illu_all_raref_2reads %>% sample_sums %>% sum 
-subset_taxa(illu_all_raref_2reads, Species=="__") %>% sample_sums %>% sum # 44.8% of non-assigned reads for Illu
-64877/144718
+subset_taxa(illu_all_raref_2reads, Species=="__") %>% sample_sums %>% sum
+64877/144718 # 44.8% of non-assigned reads for Illu
 nano_all_raref_2reads %>% sample_sums %>% sum 
-subset_taxa(nano_all_raref_2reads, Species=="__") %>% sample_sums %>% sum # 35.8% of non-assigned reads for Illu
-354023/989658
+subset_taxa(nano_all_raref_2reads, Species=="__") %>% sample_sums %>% sum
+354023/989658 # 35.8% of non-assigned reads for Illu
 
 ## shared families between illumina and nanopore
 illu_all_raref_2reads_fam <- tax_glom(illu_all_raref_2reads, taxrank = "Family")
@@ -208,8 +206,7 @@ n_occur_fam <- data.frame(table(bact_raref_2reads_fam@tax_table[,5]))
 shared_fam <- n_occur_fam[n_occur_fam$Freq > 1,]
 n_occur_fam[,2] %>% length ## 408 bacterial families in total
 shared_fam$Var1 %>% length ## 234 of the 408 families are shared (57.3%), 174 families are not
-234/408
-408-234
+
 
 
 
@@ -218,22 +215,22 @@ shared_fam$Var1 %>% length ## 234 of the 408 families are shared (57.3%), 174 fa
 set.seed(1234)
 illu_all_classic_raref <- rarefy_even_depth(illu_bact, rngseed = T) # Coverage value was set to the minimum observed value across all samples (0.9996036)
 illu_all_classic_raref_2reads <- microbiome::core(illu_all_classic_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-illu_all_classic_raref_2reads %>% sample_sums %>% max # 1582 reads, 587 OTUs
+illu_all_classic_raref_2reads %>% sample_sums %>% max # 1624 reads, 614 OTUs
 ##write.csv(illu_all_classic_raref_2reads@tax_table,"~/sync/mangroves/M2_Alice/resultats/silva_primers_ONT_Illumina/illu_all_classic_raref_no_singleton.csv")
 
 nano_all_classic_raref <- rarefy_even_depth(nano_all, sample.size =(illu_all_classic_raref %>% sample_sums %>% min),  rngseed = T) # Coverage value was set to the minimum observed value across all samples (0.9996036)
 nano_all_classic_raref_2reads <- microbiome::core(nano_all_classic_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-nano_all_classic_raref_2reads %>% sample_sums %>% max # 1950 reads, 831 OTUs
+nano_all_classic_raref_2reads %>% sample_sums %>% max # 1614 reads, 757 OTUs
 ##write.csv(nano_all_classic_raref_2reads@tax_table,"~/sync/mangroves/M2_Alice/resultats/silva_primers_ONT_illumina/nano_all_classic_raref_no_singleton.csv")
 
-illu_bact <- subset_taxa(illu_bact_classic_raref, Kingdom=="Bacteria")
+illu_bact <- subset_taxa(illu_all_classic_raref_2reads, Kingdom=="Bacteria")
 illu_bact_classic_raref <- rarefy_even_depth(illu_bact, rngseed = T) # Coverage value was set to the minimum observed value across bact samples (0.9996036)
 illu_bact_classic_raref_2reads <- microbiome::core(illu_bact_classic_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-illu_bact_classic_raref_2reads %>% sample_sums %>% max # 1624 reads, 614 OTUs
+illu_bact_classic_raref_2reads %>% sample_sums %>% max # 1607 reads, 580 OTUs
 
 nano_bact_classic_raref <- rarefy_even_depth(nano_bact, sample.size =(illu_bact_classic_raref %>% sample_sums %>% min),  rngseed = T) # Coverage value was set to the minimum observed value across bact samples (0.9996036)
 nano_bact_classic_raref_2reads <- microbiome::core(nano_bact_classic_raref, detection=1, prevalence=0) # remove singletons after rarefaction
-nano_bact_classic_raref_2reads %>% sample_sums %>% max # 1593 reads (singletons removed), 954 OTUs
+nano_bact_classic_raref_2reads %>% sample_sums %>% max # 1575 reads (singletons removed), 933 OTUs
 
 
 
