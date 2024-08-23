@@ -1,5 +1,6 @@
-Pre-processed data and scripts related to the MS:
+Pre-processed data and scripts related to the publication:
 "Evaluation of a nanopore sequencing strategy on bacterial communities from marine sediments"
+published in Environmental DNA
 
 by
 Alice LEMOINNE, Guillaume DIRBERG, Myriam GEORGES & Tony ROBINET
